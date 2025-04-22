@@ -23,7 +23,7 @@ while True:
     shape_count = 0
 
     for contour in contours:
-        if shape_count >= 5:  # Maksimum 5 şekil göstermek için sınır koy
+        if shape_count >= 999:  # Maksimum 5 şekil göstermek için sınır koy
             break
 
         # Konturu yaklaştırarak köşe sayısını bul
