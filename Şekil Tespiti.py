@@ -32,18 +32,27 @@ while True:
         num_vertices = len(approx)
 
         # Şekli belirle
-        shape = "Bilinmeyen"
+        shape = "Unknown"
         if num_vertices == 3:
             shape = "Triangle"
+            # Şekli çerçevele ve ismini yazdır
+            cv2.drawContours(frame, [approx], 0, (255, 0, 0), 2)
+            x, y = approx.ravel()[0], approx.ravel()[1] - 10
+            cv2.putText(frame, shape, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
         elif num_vertices == 4:
             shape = "Rectangle"
-        elif num_vertices > 8:
+            # Şekli çerçevele ve ismini yazdır
+            cv2.drawContours(frame, [approx], 0, (0, 255, 0), 2)
+            x, y = approx.ravel()[0], approx.ravel()[1] - 10
+            cv2.putText(frame, shape, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        elif num_vertices > 6:
             shape = "Circle"
+            # Şekli çerçevele ve ismini yazdır
+            cv2.drawContours(frame, [approx], 0, (0, 0, 255), 2)
+            x, y = approx.ravel()[0], approx.ravel()[1] - 10
+            cv2.putText(frame, shape, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
 
-        # Şekli çerçevele ve ismini yazdır
-        cv2.drawContours(frame, [approx], 0, (0, 255, 0), 2)
-        x, y = approx.ravel()[0], approx.ravel()[1] - 10
-        cv2.putText(frame, shape, (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        
 
         # Şekil sayısını artır
         shape_count += 1
